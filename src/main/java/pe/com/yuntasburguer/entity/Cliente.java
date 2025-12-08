@@ -23,4 +23,8 @@ public class Cliente {
     private String nombre;
 
     private String telefono;
+    
+    @Column(columnDefinition = "TINYINT DEFAULT 1")
+    private Boolean estado;
+   
 }

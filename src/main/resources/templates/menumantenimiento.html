@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Yuntas Burguer</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --peach: #FFD5C2;
+            --cream: #FFF3E4;
+            --beige: #F6EDE3;
+            --pink: #FFE4EC;
+            --mint: #DFF7E2;
+            --text-dark: #4a4a4a;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: var(--peach);
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px 15px;
+        }
+
+        .sidebar h4 {
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .menu-title {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submenu {
+            padding-left: 15px;
+            background-color: var(--pink);
+            border-radius: 8px;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .submenu a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENT AREA */
+        .content {
+            margin-left: 250px;
+            padding: 25px;
+            min-height: 100vh;
+        }
+
+        /* TOP RIGHT BUTTON */
+        .btn-nuevo {
+            background-color: var(--mint);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .btn-nuevo:hover {
+            background-color: var(--pink);
+        }
+
+        /* WELCOME BOX */
+        .welcome-box {
+            background-color: var(--beige);
+            border-radius: 12px;
+            padding: 60px;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-top: 80px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h4>Mantenimiento</h4>
+
+        <!-- Menú con collapse -->
+        <p class="menu-title" data-bs-toggle="collapse" data-bs-target="#submenuReg">
+            Registrar ▼
+        </p>
+
+        <div class="collapse submenu" id="submenuReg">
+            <a href="#">Clientes</a>
+            <a href="#">Mesas</a>
+            <a href="#">Productos</a>
+            <a th:href="@{menu/empleado}">Empleados</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <!-- TOP RIGHT BUTTON -->
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn-nuevo">Nuevo Pedido</button>
+        </div>
+
+        <!-- WELCOME MESSAGE -->
+        <div class="welcome-box">
+            Bienvenido al Panel Yuntas Burguer
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

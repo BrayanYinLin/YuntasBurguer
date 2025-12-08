@@ -23,4 +23,7 @@ public class Producto {
     private String nombre;
 
     private Double precio;
+    
+    @Column(columnDefinition = "TINYINT DEFAULT 1")
+    private Boolean estado;
 }

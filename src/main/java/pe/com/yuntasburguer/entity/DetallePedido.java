@@ -29,5 +29,9 @@ public class DetallePedido {
     private Producto producto;
 
     private Integer cantidad;
+    
+    @Column(columnDefinition = "TINYINT DEFAULT 1")
+    private Boolean estado;
+   
 
 }
