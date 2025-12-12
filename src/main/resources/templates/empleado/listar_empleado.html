@@ -279,8 +279,8 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Teléfono</th>
-                            <th scope="col">Estado</th>
-							<th scope="col">Cargo</th>
+                            <th scope="col">Cargo</th>
+							<th scope="col">Estado</th>
                             <th scope="col" class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -293,9 +293,9 @@
                             <td th:text="${emp.dni}">DNI</td>
                             <td th:text="${emp.telefono}">Teléfono</td>
 							<td th:text="${emp.cargo}">Cargo</td>
-                            <td>
-                                <span th:text="${emp.estado}">Activo</span>
-                            </td>
+                            <td th:text="${emp.cargo == 'true' ? 'No habilitado' : 'Habilitado'}"></td>
+
+
                             <td class="text-center action-icons">
                                 <a th:href="@{/empleado/actualizar/{id}(id=${emp.id})}" title="Actualizar"><i class="bi bi-pencil-square"></i></a>
                                 <a th:href="@{/empleado/deshabilitar/{id}(id=${emp.id})}" title="Deshabilitar"><i class="bi bi-trash"></i></a>

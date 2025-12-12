@@ -3,13 +3,12 @@ package pe.com.yuntasburguer.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import pe.com.yuntasburguer.entity.Empleado;
 import pe.com.yuntasburguer.service.EmpleadoService;
+
+import java.util.Map;
 
 @Controller
 public class EmpleadoController {
@@ -65,6 +64,11 @@ public class EmpleadoController {
         servicio.enable(id);
         return "redirect:/empleado/habilitar";
     }
+    @GetMapping("/empleado/disable/{id}")
+    public String disableEmpleado(@PathVariable Long id) {
+        servicio.delete(id);
+        return "redirect:/empleado/habilitar";
+    }
 
     // CREAR OBJETO EMPLEADO PARA FORMULARIOS
     @ModelAttribute("empleado")
@@ -85,4 +89,6 @@ public class EmpleadoController {
         servicio.update(obj, id);
         return "redirect:/empleado/listar";
     }
+
+
 }
