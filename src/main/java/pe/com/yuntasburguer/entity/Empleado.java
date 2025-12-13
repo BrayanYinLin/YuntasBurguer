@@ -21,6 +21,11 @@ public class Empleado {
     private Integer id;
 
     private String nombre;
-
+    private String apellido;
+    private String dni;
+    private String telefono;
     private String cargo;
+
+    @Column(columnDefinition = "TINYINT DEFAULT 1")
+    private Boolean estado;
 }

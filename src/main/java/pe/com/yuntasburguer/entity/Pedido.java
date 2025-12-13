@@ -37,8 +37,8 @@ public class Pedido {
 
     private LocalDateTime fecha;
 
-    @Enumerated(EnumType.STRING)
-    private EstadoPedido estado;
+    @Column(columnDefinition = "TINYINT DEFAULT 1")
+    private Boolean estado;
 
     public enum EstadoPedido {
         En_proceso, Preparando, Listo, Pagado
