@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Listado de Productos - Yuntas Burguer</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --peach: #ffd5c2;
+        --cream: #fff3e4;
+        --beige: #f6ede3;
+        --pink: #ffe4ec;
+        --mint: #dff7e2;
+        --text-dark: #4a4a4a;
+      }
+
+      body {
+        background-color: var(--cream);
+        color: var(--text-dark);
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        margin: 0;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 260px;
+        min-height: 100vh;
+        background-color: var(--peach);
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .sidebar h4 {
+        margin: 0 0 1rem 0;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .nav-link.sidebar-link {
+        color: var(--text-dark);
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 8px;
+      }
+
+      .nav-link.sidebar-link:hover,
+      .nav-link.sidebar-link:focus {
+        background: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+      }
+
+      /* Submenu */
+      .submenu {
+        margin-top: 8px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: var(--pink);
+      }
+
+      .submenu a {
+        color: var(--text-dark);
+        display: block;
+        padding: 6px 8px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .submenu a:hover {
+        background-color: var(--beige);
+        text-decoration: none;
+      }
+
+      /* Active producto item */
+      .submenu a.active {
+        background-color: var(--beige);
+        font-weight: 700;
+      }
+
+      /* Main content area */
+      .main-content {
+        margin-left: 260px;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      /* Top navbar inside content */
+      .topbar {
+        background: transparent;
+        padding: 0;
+      }
+
+      .btn-nuevo {
+        background-color: var(--mint);
+        color: var(--text-dark);
+        border: none;
+        border-radius: 10px;
+        padding: 8px 14px;
+        font-weight: 700;
+      }
+      .btn-nuevo:hover {
+        background-color: var(--peach);
+      }
+
+      /* Title & action buttons */
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 18px 0;
+        flex-wrap: wrap;
+      }
+
+      .action-buttons .btn {
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .btn-register {
+        background-color: var(--mint);
+        color: var(--text-dark);
+        border: none;
+      }
+      .btn-register:hover {
+        background-color: var(--peach);
+      }
+
+      .btn-enable {
+        background-color: var(--peach);
+        color: var(--text-dark);
+        border: none;
+      }
+      .btn-enable:hover {
+        background-color: var(--pink);
+      }
+
+      /* Table styling */
+      .table-wrap {
+        background-color: transparent;
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      table.table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      table.table thead th {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        background-color: var(--beige);
+        font-weight: 700;
+      }
+
+      table.table tbody tr {
+        transition: background-color 0.12s ease;
+      }
+
+      table.table tbody tr:hover {
+        background-color: var(--beige);
+      }
+
+      table.table td,
+      table.table th {
+        vertical-align: middle;
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+        padding: 12px 10px;
+        color: var(--text-dark);
+      }
+
+      .action-icons a {
+        color: var(--text-dark);
+        margin-right: 8px;
+        font-size: 1.05rem;
+      }
+
+      .action-icons a:hover {
+        color: #000;
+      }
+
+      /* Responsive */
+      @media (max-width: 991.98px) {
+        .sidebar {
+          position: relative;
+          width: 100%;
+          min-height: auto;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .page-header {
+          flex-direction: column;
+          align-items: stretch;
+          text-align: left;
+        }
+        .action-buttons {
+          display: flex;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebarMenu">
+      <h4>Mantenimiento</h4>
+
+      <!-- Registrar accordion/collapse -->
+      <div class="mb-3">
+        <a
+          class="nav-link sidebar-link d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse"
+          href="#collapseRegistrar"
+          role="button"
+          aria-expanded="true"
+          aria-controls="collapseRegistrar"
+        >
+          Registrar
+          <i class="bi bi-chevron-down"></i>
+        </a>
+
+        <div class="collapse show submenu mt-2" id="collapseRegistrar">
+          <a th:href="@{/clientes}" class="">Clientes</a>
+          <a th:href="@{/mesas}" class="">Mesas</a>
+          <a th:href="@{/menu/empleado}" class="">Empleados</a>
+          <!-- productos resaltado cuando esté activo -->
+        </div>
+      </div>
+
+      <!-- espacio opcional para otros links -->
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- Topbar: en pantallas pequeñas muestra botón para colapsar sidebar -->
+      <nav
+        class="topbar d-flex align-items-center justify-content-between mb-3"
+      >
+        <div>
+          <!-- Opcional: botón hamburguesa para pantallas pequeñas -->
+          <button
+            class="btn btn-sm d-md-none btn-outline-secondary me-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseRegistrar"
+            aria-controls="collapseRegistrar"
+            aria-expanded="false"
+            aria-label="Toggle sidebar"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+
+        <div class="ms-auto">
+          <button class="btn-nuevo">
+            <i class="bi bi-basket me-2"></i> Nuevo Pedido
+          </button>
+        </div>
+      </nav>
+
+      <!-- Page header: título + botones -->
+      <div class="page-header">
+        <h2 class="h4 mb-0">Listado de Productos</h2>
+
+        <div class="action-buttons d-flex gap-2">
+          <a class="btn btn-register" th:href="@{/producto/registro}"
+            ><i class="bi bi-person-plus me-2"></i>Registrar producto</a
+          >
+          <a class="btn btn-enable" th:href="@{/producto/habilitar}"
+            ><i class="bi bi-toggle-on me-2"></i>Habilitar productos</a
+          >
+        </div>
+      </div>
+
+      <!-- Contenido central (tabla) -->
+      <section class="table-wrap">
+        <!-- Responsive table -->
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pro : ${listaproductos}">
+                <td th:text="${pro.id}">1</td>
+                <td th:text="${pro.nombre}">Nombre</td>
+
+                <td th:text="${pro.precio}">Precio</td>
+
+                <td
+                  th:text="${pro.estado ? 'Habilitado' : 'No habilitado'}"
+                ></td>
+
+                <td class="text-center action-icons">
+                  <a
+                    th:href="@{/producto/actualizar/{id}(id=${pro.id})}"
+                    title="Actualizar"
+                    ><i class="bi bi-pencil-square"></i
+                  ></a>
+                  <a
+                    th:href="@{/producto/deshabilitar/{id}(id=${pro.id})}"
+                    title="Deshabilitar"
+                    ><i class="bi bi-trash"></i
+                  ></a>
+                </td>
+              </tr>
+
+              <tr th:if="${#lists.isEmpty(listaproductos)}">
+                <td
+                  colspan="5"
+                  class="text-center py-4"
+                  style="background: var(--cream); border-radius: 8px"
+                >
+                  No hay productos registrados.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

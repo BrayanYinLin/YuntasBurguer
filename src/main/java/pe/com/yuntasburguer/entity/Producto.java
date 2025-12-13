@@ -18,11 +18,13 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
-    private Integer id;
-
+    private Long id;
+    
+    @Column(name="nombre")
     private String nombre;
-
-    private Double precio;
+    
+    @Column(name="precio")    
+    private Double precio;  
     
     @Column(columnDefinition = "TINYINT DEFAULT 1")
     private Boolean estado;
