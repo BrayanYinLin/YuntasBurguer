@@ -22,11 +22,15 @@ public class Mesa {
 
     private Integer numero;
 
-    @Column(columnDefinition = "TINYINT DEFAULT 1")
-    private Boolean estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_mesa")
+    @Builder.Default
+    private EstadoMesa estado = EstadoMesa.Libre; 
 
     public enum EstadoMesa {
-        Libre, Ocupada
+        Libre,    
+        Ocupada,  
+        Inactiva  
     }
     
     

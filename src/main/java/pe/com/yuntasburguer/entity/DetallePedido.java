@@ -28,6 +28,7 @@ public class DetallePedido {
     @JoinColumn(name = "id_producto")
     private Producto producto;
 
+    @Column(name="cantidad")
     private Integer cantidad;
     
     @Column(columnDefinition = "TINYINT DEFAULT 1")
