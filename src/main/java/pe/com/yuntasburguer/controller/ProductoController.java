@@ -41,7 +41,7 @@ public class ProductoController {
     // Mostrar formulario de registro
     @GetMapping("/producto/registro")
     public String MostrarRegistrarProducto(Model modelo) {
-        return "productos/registrar_productos";
+        return "Productos/registrar_productos";
     }
 
     // Mostrar formulario de actualización
