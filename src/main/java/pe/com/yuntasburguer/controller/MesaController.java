@@ -17,19 +17,19 @@ public class MesaController {
     @GetMapping("/menu/mesa")
     public String MostrarMenuMesa(Model modelo) {
         modelo.addAttribute("listamesa", servicio.findAll()); 
-        return "mesa/listar_mesa";
+        return "Mesa/listar_mesa";
     }
 
     @GetMapping("/mesa/listar")
     public String MostrarListarMesa(Model modelo) {
         modelo.addAttribute("listamesa", servicio.findAll());
-        return "mesa/listar_mesa";
+        return "Mesa/listar_mesa";
     }
 
     @GetMapping("/mesa/habilitar")
     public String MostrarMesaHabilitados(Model modelo) {
         modelo.addAttribute("listamesa", servicio.findAll());
-        return "mesa/habilitar_mesa";
+        return "Mesa/habilitar_mesa";
     }
 
     // --- FORMULARIOS ---
@@ -37,14 +37,14 @@ public class MesaController {
     // Mostrar formulario de registro
     @GetMapping("/mesa/registro")
     public String MostrarRegistrarMesa(Model modelo) {
-        return "mesa/registrar_mesa";
+        return "Mesa/registrar_mesa";
     }
 
     // Mostrar formulario de actualización
     @GetMapping("/mesa/actualizar/{id}")
     public String MostrarActualizarMesa(Model modelo, @PathVariable Integer id) { // OJO: Integer
         modelo.addAttribute("mesa", servicio.findById(id));
-        return "mesa/actualizar_mesa";
+        return "Mesa/actualizar_mesa";
     }
 
     // --- ACCIONES (GET) PARA CAMBIAR ESTADO ---
