@@ -203,30 +203,37 @@
 </head>
 <body>
 
-    <aside class="sidebar" id="sidebarMenu">
-        <h4>Mantenimiento</h4>
+<aside class="sidebar" id="sidebarMenu">
+    <h4>Mantenimiento</h4>
 
-        <div class="mb-3">
-            <a class="nav-link sidebar-link d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse"
-               href="#collapseRegistrar"
-               role="button"
-               aria-expanded="true"
-               aria-controls="collapseRegistrar">
-                Registrar
-                <i class="bi bi-chevron-down"></i>
-            </a>
+    <!-- Registrar accordion/collapse -->
+    <div class="mb-3">
+        <a class="nav-link sidebar-link d-flex justify-content-between align-items-center"
+           data-bs-toggle="collapse"
+           href="#collapseRegistrar"
+           role="button"
+           aria-expanded="true"
+           aria-controls="collapseRegistrar">
+            Registrar
+            <i class="bi bi-chevron-down"></i>
+        </a>
 
-            <div class="collapse show submenu mt-2" id="collapseRegistrar">
-                <a th:href="@{/menu/cliente}" class="" >Clientes</a>
-                <a th:href="@{/mesa/listar}" class="active-item">Mesas</a>
-                <a th:href="@{/menu/productos}" class="">Productos</a>
-                <a th:href="@{/empleado/listar}" class="">Empleados</a>
-            </div>
+        <div class="collapse show submenu mt-2" id="collapseRegistrar">
+            <a th:href="@{/menu/cliente}" class="">Clientes</a>
+            <a th:href="@{/menu/mesa}" class="">Mesas</a>
+            <a th:href="@{/menu/productos}" class="">Productos</a>
+            <a th:href="@{/menu/empleado}" class="">Empleado</a>
+            <a th:href="@{/pedidos}" class="">Pedidos</a>
+            <!-- Empleados resaltado cuando esté activo -->
+
         </div>
-    </aside>
+    </div>
 
-    <main class="main-content">
+    <!-- espacio opcional para otros links -->
+</aside>
+
+
+<main class="main-content">
 
         <nav class="topbar d-flex align-items-center justify-content-between mb-3">
             <div>
