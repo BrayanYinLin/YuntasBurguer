@@ -19,21 +19,21 @@ public class ProductoController {
     @GetMapping("/menu/productos")
     public String MostrarMenuProducto(Model modelo) {
         modelo.addAttribute("listaproductos", servicio.findAllCustom());
-        return "productos/listar_productos";
+        return "Productos/listar_productos";
     }
 
     // Listar solo productos activos
     @GetMapping("/productos/listar")
     public String MostrarListarProducto(Model modelo) {
         modelo.addAttribute("listaproductos", servicio.findAllCustom());
-        return "productos/listar_productos";
+        return "Productos/listar_productos";
     }
 
     // Listar TODOS (Habilitados y Deshabilitados) para mantenimiento
     @GetMapping("/producto/habilitar")
     public String MostrarProductosHabilitados(Model modelo) {
         modelo.addAttribute("listaproductos", servicio.findAll());
-        return "productos/habilitar_productos"; 
+        return "Productos/habilitar_productos";
     }
 
     // --- RUTAS DE FORMULARIOS (Vistas) ---
@@ -48,7 +48,7 @@ public class ProductoController {
     @GetMapping("/producto/actualizar/{id}")
     public String MostrarActualizarProducto(Model modelo, @PathVariable Long id) {
         modelo.addAttribute("producto", servicio.findById(id));
-        return "productos/actualizar_productos";
+        return "Productos/actualizar_productos";
     }
 
 
